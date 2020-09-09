@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Page Title</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+<body>
+
+<p> Welcome! Thanks for signing up.<br> </p>
+
+<p> Please confirm your email by clicking the button below:<br> </p>
+
+
+  
+<button id="buttonId", type="button", style="background-color: #4CAF50; 
+  border-radius: 8px;  border: none; color: white; padding: 20px;
+  text-align: center; text-decoration: none; display: inline-block;
+  font-size: 16px; margin: 4px 2px;
+  border-radius: 8px; cursor: pointer;" value="token">
+  <!-- TODO: Replace token with the generated token from the email -->
+  Confirm your email
+	<!-- <a href="http://www.realpython.com" style="color: black; text-decoration:none;">	Real Python
+	</a> -->
+</button type="button">
+<!-- Javascript begins here -->
+	<script>	
+		let url = 'https://creditscoring-infotrace.herokuapp.com/api/v1/confirm_email'
+		function confirmEmail(url){
+			let request = new XMLHttpRequest();
+			request.open("GET", url);
+			request.send();
+			request.onload = () => {
+				console.log(request)
+				if (request.status == 200){
+					console.log(JSON.parse(request.response))
+				} else {
+					console.log(`error ${request.status} ${request.statusText}`)
+				}
+			}
+		}
+		document.getElementById('buttonId').addEventListener('click', confirmEmail)
+		// document.getElementById('buttonId').addEventListener('click', confirmEmail);
+		// var token = document.getElementById('buttonId').value
+		// console.log(url)
+		// function confirmEmail(final_url){
+		// 	fetch(final_url)
+		// 		.then(response => response.json())
+		// 		.then(json => console.log(json))
+		
+	</script>
+</body>
+</html>
